@@ -1,6 +1,10 @@
 # kiduki-app
 シニア犬の日々の生活記録から認知機能低下の兆候につながる「いつもと違う変化」を検知し、飼い主の早期の気づきを支援するWebアプリ
 
+## 画面遷移図
+Figma：https://www.figma.com/design/WGGFvfr9USzcx4ow2zyCDj/kiduki_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=I3y52Jb1SSLhREAC-1
+
+
 ## 1. サービス概要
 
 - 毎日愛犬と接しているからこそ気づきにくい、緩やかな認知機能の変化を、日々の生活データから検知し、「いつもと違う」を飼い主へ伝えるサービス
