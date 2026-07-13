@@ -5,7 +5,7 @@
 Figma：https://www.figma.com/design/WGGFvfr9USzcx4ow2zyCDj/kiduki_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=I3y52Jb1SSLhREAC-1
 
 ## ER図
-![ER図](https://i.gyazo.com/06d0ccdb9206845f3467e536000e021f.png)
+![ER図](https://i.gyazo.com/748bc3d5cf725acbfa7704a5a015588d.png)
 
 
 ## 1. サービス概要
