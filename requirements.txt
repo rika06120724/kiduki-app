@@ -1,0 +1,5 @@
+# Django 5.2系の最新版をインストール
+Django==5.2.16
+
+# PostgreSQL用のデータベースアダプター（バイナリ版）
+psycopg[binary]>=3.1.0
