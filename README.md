@@ -398,6 +398,7 @@ UI・体験の改善：
 
 - フレームワーク：Django
 - DB：PostgreSQL
+- CSS：Tailwind CSS（CDN）
 - デプロイ先：Render
 - 使用予定ライブラリ：
     - scikit-learn（Isolation Forestによる異常検知）
@@ -417,6 +418,7 @@ UI・体験の改善：
 | Render | 採用 | GitHub連携による自動デプロイが可能で、Django・PostgreSQLとの構成をシンプルに構築できるため。 |
 | scikit-learn | 採用 | 正常・異常のラベル付きデータを用意することが難しいため、教師なし異常検知を採用した。Isolation Forestによって、複数の生活記録項目を組み合わせた行動パターンの変化を検知したいため。|
 | React | 不採用（将来検討） | MVPではDjangoテンプレートを優先したため。 |
+| Tailwind CSS | 採用 | カリキュラムで習得しており、キャッチアップに時間を要さないうえ、CDN導入でビルド環境が不要であるため  |
 
 ---
 
