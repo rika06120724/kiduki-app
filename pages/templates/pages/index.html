@@ -1,4 +1,41 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <h1>Kiduki</h1>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}kiduki{% endblock %}
+
+{% block content %}
+<div class="flex bg-amber-50 min-h-screen flex-col">
+    <!--背景--> 
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-4">
+    <!--タイトル--> 
+        <h1 class="text-8xl mt-4 font-bold font-['ADLaM_Display'] text-black">kiduki</h1>
+        
+       <!--ボタンの作成--> 
+
+       <!--登録--> 
+        <div>
+            <p class="mt-4">はじめてのかた</p>
+            <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20">登録</button>
+        </div>
+
+       <!--ログイン--> 
+        <div>
+            <p class="mt-4">とうろくずみのかた</p>
+            <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20">ログイン</button>
+        </div>
+
+       <!--使用方法--> 
+        <button class="bg-[#FDD3D0] mt-8 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20">使用方法</button>
+
+        <!--犬のイラスト-->
+        <img src="{% static 'images/top_page_dog.png' %}" alt="犬のイラスト" class="w-48 mt-2">
+    </div>
+
+   <!--フッター--> 
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+</div>
+{% endblock %}
