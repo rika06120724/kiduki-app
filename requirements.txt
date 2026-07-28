@@ -6,3 +6,6 @@ psycopg[binary]>=3.1.0
 
 # 本番環境で静的ファイルを配信するためのライブラリ
 whitenoise >=6.0
+
+# 本番環境でDjangoを起動するWSGIサーバー（開発用のrunserverの代わり）
+gunicorn>=26.0.0
