@@ -3,3 +3,6 @@ Django==5.2.16
 
 # PostgreSQL用のデータベースアダプター（バイナリ版）
 psycopg[binary]>=3.1.0
+
+# 本番環境で静的ファイルを配信するためのライブラリ
+whitenoise >=6.0
