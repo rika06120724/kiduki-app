@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,14 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # PostgreSQLを使用
-        'NAME': os.environ.get('POSTGRES_DB'),  # データベース名（compose.ymlと一致）
-        'USER': os.environ.get('POSTGRES_USER'),  # 接続ユーザー名（compose.ymlと一致）
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),  # 接続パスワード（compose.ymlと一致）
-        'HOST': 'db',  # compose.ymlで定義したサービス名
-        'PORT': '5432',  # PostgreSQLの標準ポート
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 

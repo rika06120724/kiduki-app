@@ -9,3 +9,6 @@ whitenoise >=6.0
 
 # 本番環境でDjangoを起動するWSGIサーバー（開発用のrunserverの代わり）
 gunicorn>=26.0.0
+
+# データベース接続URLをDjango設定に変換するためのライブラリ
+dj-database-url>=3.1.2
