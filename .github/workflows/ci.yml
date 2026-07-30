@@ -7,6 +7,25 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:                             
+      DATABASE_URL: postgres://postgres:password@localhost:5432/kiduki_development
+      SECRET_KEY: '&&&^*#o&fulon@o7tpmk@d3(=vhx@bv@wtx-tqvv2piqe=0gc&' # CI専用ダミー
+    
+    services:
+      db:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres 
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: kiduki_development
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
 
     steps:
 
@@ -31,5 +50,7 @@ jobs:
       - name: Install library
 
         run: pip install -r requirements.txt
-      - name: check manage.py
+      - name: Check manage.py
         run: python manage.py check
+      - name: run tests
+        run: python manage.py test
