@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+  <header class="bg-[#ade0ee] px-2">
+    <img src="{% static 'images/logo.png' %}" alt="ロゴ" class="h-12">
+  </header>
+{% endblock %}
+
+{% block content %}
+  <!--背景-->
+  <div class="flex bg-amber-50 min-h-screen flex-col">
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-2">
+      <form method="post">
+        {% csrf_token %}
+        
+        <!-- エラーメッセージ表示 -->
+        {% if form.non_field_errors %}
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            {% for error in form.non_field_errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <div>
+          <p class="text-lg">メールアドレス</p>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <div class="text-red-600 text-sm">
+              {% for error in form.username.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div>
+          <p class="text-lg">パスワード</p>
+          {{ form.password }}
+          {% if form.password.errors %}
+            <div class="text-red-600 text-sm">
+              {% for error in form.password.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20" type="submit">ログイン</button>
+      </form>
+    </div>
+
+    <!--フッター-->
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+  </div>
+{% endblock %}

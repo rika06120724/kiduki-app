@@ -14,13 +14,17 @@
        <!--登録--> 
         <div>
             <p class="mt-4">はじめてのかた</p>
-            <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20">登録</button>
+            <form method="get" action="{% url 'users:register' %}">
+                <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20" type="submit">登録</button>
+            </form>
         </div>
 
        <!--ログイン--> 
         <div>
             <p class="mt-4">とうろくずみのかた</p>
-            <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20">ログイン</button>
+            <form method="get" action="{% url 'users:login' %}">
+                <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20" type="submit">ログイン</button>
+            </form>
         </div>
 
        <!--使用方法--> 
