@@ -12,3 +12,6 @@ gunicorn>=26.0.0
 
 # データベース接続URLをDjango設定に変換するためのライブラリ
 dj-database-url>=3.1.2
+
+# テスト用のデータを自動生成するライブラリ
+factory-boy==3.3.3
