@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',  # usersアプリを追加
     'pages',  # pagesアプリを追加
+    'pets',  # petsアプリを追加
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
