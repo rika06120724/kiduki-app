@@ -52,5 +52,5 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check manage.py
         run: python manage.py check
-      - name: run tests
-        run: python manage.py test
+      - name: Run tests with coverage
+        run: pytest --cov=users --cov-report=xml --cov-report=html
