@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+  <header class="bg-[#ade0ee] px-2">
+    <img src="{% static 'images/logo.png' %}" alt="ロゴ" class="h-12">
+  </header>
+{% endblock %}
+
+{% block content %}
+  <style>
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .form-group{
+      margin-bottom: 2rem;
+    }
+  </style>
+  <div class="flex bg-amber-50 min-h-screen flex-col">
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-8">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <p class="text-lg">ペットの名前</p>
+          {{ form.name }}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">年齢</p>
+          {{ form.age }}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">性別</p>
+          {{ form.sex }}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">サイズ</p>
+          {{ form.size }}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">アイコン</p>
+          {{ form.icon }}
+        </div>
+
+        <button class="bg-[#FDD3D0] mt-1 px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20" type="submit">登録</button>
+      </form>
+    </div>
+
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+  </div>
+{% endblock %}
