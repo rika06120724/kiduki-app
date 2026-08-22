@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy 
 from .forms import UserCreateForm, CustomAuthenticationForm
@@ -10,7 +10,8 @@ def register(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('pages:index')
+            login(request, user)
+            return redirect('pets:register')
     else:
         form = UserCreateForm()
     return render(request, 'users/register.html', {'form': form})
