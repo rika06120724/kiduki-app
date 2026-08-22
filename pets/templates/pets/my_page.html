@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+  <header class="bg-[#ade0ee80] flex items-center h-12">
+    <img src="{% static 'images/logo.png' %}" alt="ロゴ" class="h-12 ml-2">
+    <div class="flex-1"></div>
+    <div class="bg-[#65BBE950] h-12 w-12 flex items-center justify-center">
+      <img src="{% static 'images/setting_button.png' %}" alt="設定" class="h-10 w-10 ">
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <div class="flex bg-amber-50 min-h-screen flex-col">
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-4">
+      <div class="w-full">
+        {% if pets %}
+          {% for pet in pets %}
+            <div class="mb-12 text-center">
+              {% if pet.icon %}
+                <img src="{{ pet.icon.url }}" alt="{{ pet.name }}" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
+              {% else %}
+                <div class="w-32 h-32 rounded-full mx-auto mb-6 bg-gray-300 flex items-center justify-center">
+                  <span>アイコン</span>
+                </div>
+              {% endif %}
+              
+              <p class="text-lg">名前</p>
+              <p class="text-lg mb-6">{{ pet.name }}</p>
+              
+              <p class="text-lg">年齢</p>
+              <p class="text-lg mb-6">{{ pet.age }}</p>
+              
+              <p class="text-lg">性別</p>
+              <p class="text-lg mb-6">{% if pet.sex == 1 %}オス{% else %}メス{% endif %}</p>
+              
+              <p class="text-lg">サイズ</p>
+              <p class="text-lg mb-6">{% if pet.size == 1 %}小{% elif pet.size == 2 %}中{% else %}大{% endif %}</p>
+              
+              <div class="mt-6 space-y-6">
+                <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">記録</a>
+                <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">検知結果</a>
+                <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">編集</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-lg text-center">ペットが登録されていません。</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+  </div>
+{% endblock %}
