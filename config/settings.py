@@ -135,7 +135,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'users:login'
-LOGIN_REDIRECT_URL = 'pages:index'
+LOGIN_REDIRECT_URL = 'pets:my_page'
 LOGOUT_REDIRECT_URL = 'pages:index'
 
 # AWS S3 storage configuration 

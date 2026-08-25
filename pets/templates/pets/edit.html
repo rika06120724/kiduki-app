@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+  <header class="bg-[#ade0ee80] flex items-center h-12">
+    <img src="{% static 'images/logo.png' %}" alt="ロゴ" class="h-12 ml-2">
+    <div class="flex-1"></div>
+    <div class="bg-[#65BBE950] h-12 w-12 flex items-center justify-center">
+      <img src="{% static 'images/setting_button.png' %}" alt="設定" class="h-10 w-10 ">
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <style>
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .form-group{
+      margin-bottom: 2rem;
+    }
+  </style>
+  <div class="flex bg-amber-50 min-h-screen flex-col">
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-8">
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <p class="text-lg">ペットの名前</p>
+          {{ form.name }}
+          {% if form.name.errors %}<div class="text-red-600 text-sm">{% for error in form.name.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">年齢</p>
+          {{ form.age }}
+          {% if form.age.errors %}<div class="text-red-600 text-sm">{% for error in form.age.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">性別</p>
+          {{ form.sex }}
+          {% if form.sex.errors %}<div class="text-red-600 text-sm">{% for error in form.sex.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">サイズ</p>
+          {{ form.size }}
+          {% if form.size.errors %}<div class="text-red-600 text-sm">{% for error in form.size.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <p class="text-lg">アイコン</p>
+          {{ form.icon }}
+          {% if form.icon.errors %}<div class="text-red-600 text-sm">{% for error in form.icon.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <button class="bg-[#FDD3D0] px-6 py-2 rounded-sm text-2xl font-bold text-black w-32 h-16 flex items-center justify-center" type="submit">修正</button>
+          <a href="{% url 'pets:my_page' %}" class="bg-gray-300 px-6 py-2 rounded-sm text-2xl font-bold text-black w-32 h-16 flex items-center justify-center">戻る</a>
+        </div>
+      </form>
+    </div>
+
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+  </div>
+{% endblock %}
