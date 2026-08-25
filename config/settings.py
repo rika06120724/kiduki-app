@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users',  # usersアプリを追加
     'pages',  # pagesアプリを追加
     'pets',  # petsアプリを追加
+    'storages',  # AWS S3統合用のアプリを追加
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -136,3 +137,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'pages:index'
 LOGOUT_REDIRECT_URL = 'pages:index'
+
+# AWS S3 storage configuration 
+# ローカル環境と本番環境で保存先を切り替える
+if os.environ.get('USE_S3') == 'True':
+    # 本番環境：S3を使用
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_ADDRESSING_STYLE = 'virtual'
+    AWS_QUERYSTRING_AUTH = True  # 署名付きURL有効
+    AWS_DEFAULT_ACL = None  # ACL無効バケット用
+else:
+    # ローカル環境：FileSystemStorageを使用
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'

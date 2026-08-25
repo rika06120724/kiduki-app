@@ -24,3 +24,9 @@ pytest-django>=4.5.2
 
 # ペット画像アップロード処理用
 Pillow>=10.0.0
+
+# AWS S3統合：ペット画像の保存先設定
+# django-storages: DjangoのS3ストレージバックエンド
+# boto3: AWS Python SDK（S3 API操作用）
+django-storages==1.14.6
+boto3==1.43.79
