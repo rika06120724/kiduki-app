@@ -7,3 +7,6 @@ staticfiles/
 # pytest-cov coverage reports
 htmlcov/
 .coverage
+
+# ペットの画像を保存するディレクトリ
+media/pets/
