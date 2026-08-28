@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('users/', include('users.urls')),
     path('pets/', include('pets.urls')),
+    path('records/', include('records.urls')),
 ]
 
 # ローカル開発時にメディアファイル（ペットアイコン）を提供する

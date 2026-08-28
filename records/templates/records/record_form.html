@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+  <header class="bg-[#ade0ee80] flex items-center h-12">
+    <img src="{% static "images/logo.png" %}" alt="ロゴ" class="h-12 ml-2">
+    <div class="flex-1"></div>
+    <div class="bg-[#65BBE950] h-12 w-12 flex items-center justify-center">
+      <img src="{% static "images/setting_button.png" %}" alt="設定" class="h-10 w-10 ">
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <style>
+    .form-group {
+      margin-bottom: 3rem;
+    }
+    .step-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      color: #666;
+    }
+    .question-number {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .question-text {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .scale-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .scale-left {
+      width: 25%;
+      text-align: right;
+      font-size: 0.75rem;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .scale-right {
+      width: 25%;
+      text-align: left;
+      font-size: 0.75rem;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .radio-group {
+      width: 50%;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+  </style>
+
+  <div class="flex bg-amber-50 min-h-screen flex-col">
+    <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-8">
+      <h1 class="text-2xl font-bold">{{ today.month }}月{{ today.day }}日の記録</h1>
+      
+      <p class="step-header">Step {{ step }}/{{ total_steps }}: 
+        {% if step == 1 %}見当識・交流に関する項目
+        {% elif step == 2 %}生活リズム・活動に関する項目
+        {% else %}生活習慣に関する項目
+        {% endif %}
+      </p>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if step == 1 %}
+          <div class="form-group">
+            <p class="question-number">① 徘徊</p>
+            <p class="question-text">今日、目的なく歩き回る・同じ場所をぐるぐる回る様子はありましたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">まったくなかった</div>
+              <div class="radio-group">
+                {% for radio in form.pacing %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">何度も見られた</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="question-number">② 姿への反応</p>
+            <p class="question-text">今日、あなたの姿を見たときの反応はどうでしたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">すぐに近づいてきた</div>
+              <div class="radio-group">
+                {% for radio in form.reaction_to_sight %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">気づかなかった</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="question-number">③ 名前への反応</p>
+            <p class="question-text">今日、名前を呼んだときの反応はどうでしたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">すぐに反応した</div>
+              <div class="radio-group">
+                {% for radio in form.reaction_to_call %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">反応しなかった</div>
+            </div>
+          </div>
+
+        {% elif step == 2 %}
+          <div class="form-group">
+            <p class="question-number">④ 夜間の落ち着き</p>
+            <p class="question-text">昨夜、落ち着かない様子や夜中に起きている様子はありましたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">くっすり眠っていた</div>
+              <div class="radio-group">
+                {% for radio in form.night_behavior %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">何度も起きていた</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="question-number">⑤ 活動量</p>
+            <p class="question-text">今日、活動量はいつもと比べてどうでしたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">よく動いていた</div>
+              <div class="radio-group">
+                {% for radio in form.activity_level %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">ほぼ動かなかった</div>
+            </div>
+          </div>
+
+        {% else %}
+          <div class="form-group">
+            <p class="question-number">⑥ トイレの失敗</p>
+            <p class="question-text">今日、トイレを失敗しましたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">失敗なし</div>
+              <div class="radio-group">
+                {% for radio in form.toilet %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">変わった</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="question-number">⑦ 食欲</p>
+            <p class="question-text">今日の食欲はどうでしたか？</p>
+            <div class="scale-container">
+              <div class="scale-left">よく食べた</div>
+              <div class="radio-group">
+                {% for radio in form.appetite %}
+                  <label>
+                    {{ radio.tag }}
+                    <span>{{ radio.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div class="scale-right">食べなかった</div>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="button-container">
+          {% if step < 3 %}
+            <button class="bg-[#FDD3D0] px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20 flex items-center justify-center" type="submit">次へ</button>
+          {% else %}
+            <button class="bg-[#FDD3D0] px-6 py-2 rounded-sm text-4xl font-bold text-black w-64 h-20 flex items-center justify-center" type="submit">送信</button>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+
+    <footer class="bg-[#ADE0EE80] text-black py-4 mt-auto">
+        <div class="max-w-sm mx-auto flex justify-between px-4">
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+        </div>
+    </footer>
+  </div>
+{% endblock %}
