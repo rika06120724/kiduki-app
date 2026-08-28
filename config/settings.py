@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'pages',  # pagesアプリを追加
     'pets',  # petsアプリを追加
     'storages',  # AWS S3統合用のアプリを追加
-    'records',  # recordsアプリを追加
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -136,7 +135,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'users:login'
-LOGIN_REDIRECT_URL = 'pets:my_page'
+LOGIN_REDIRECT_URL = 'pages:index'
 LOGOUT_REDIRECT_URL = 'pages:index'
 
 # AWS S3 storage configuration 
@@ -152,7 +151,6 @@ if os.environ.get('USE_S3') == 'True':
     AWS_DEFAULT_ACL = None
     # 本番でも MEDIA_URL は設定する（署名付きURL用）
     MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/'
-    MEDIA_ROOT = BASE_DIR / 'media'  # MEDIA_ROOT はローカル開発用に設定しておく
 else:
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
     MEDIA_URL = '/media/'

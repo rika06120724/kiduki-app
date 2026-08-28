@@ -22,7 +22,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('pets:my_page') 
+        return reverse_lazy('pages:index')
 
 def logout_view(request):
     logout(request)
