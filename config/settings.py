@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'pages',  # pagesアプリを追加
     'pets',  # petsアプリを追加
     'storages',  # AWS S3統合用のアプリを追加
+    'records',  # recordsアプリを追加
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
