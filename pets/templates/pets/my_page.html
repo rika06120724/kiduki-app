@@ -39,7 +39,7 @@
               <p class="text-lg mb-6">{% if pet.size == 1 %}小{% elif pet.size == 2 %}中{% else %}大{% endif %}</p>
               
               <div class="mt-6 space-y-6">
-                <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">記録</a>
+                <a href="{% url 'records:create' pet.id %}" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">記録</a>
                 <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">検知結果</a>
                 <a href="#" class="bg-[#FDD3D0] block px-6 py-2 rounded-sm text-2xl font-bold text-black text-center w-64 h-16 flex items-center justify-center">編集</a>
               </div>
