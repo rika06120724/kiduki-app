@@ -12,6 +12,19 @@
 {% endblock %}
 
 {% block content %}
+  {% if messages %}
+    {% for message in messages %}
+      <div id = "save-modal" class="fixed inset-0 bg-opacity-40 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-xs w-full mx-4 text-center shadow-lg">
+          <p class="text-xl font-bold mb-6">{{message}}</p>
+          <button onclick="document.getElementById('save-modal').style.display='none'" 
+            class="bg-[#FDD3D0] px-6 py-2 rounded-sm text-black font-bold">
+            閉じる
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
   <div class="flex bg-amber-50 min-h-screen flex-col">
     <div class="flex max-w-sm mx-auto flex-col items-center gap-6 mt-4">
       <div class="w-full">
