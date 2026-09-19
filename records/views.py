@@ -4,6 +4,7 @@ from django.utils import timezone
 from pets.models import Pet
 from .models import Record
 from .forms import RecordFormStep1, RecordFormStep2, RecordFormStep3
+from django.contrib import messages
 
 # ステップとフォームクラスの対応
 STEP_FORMS = {
@@ -55,6 +56,7 @@ def create_record(request, pet_id):
                 request.session.pop("record_step", None)
                 request.session.pop("record_data", None)
 
+                messages.success(request, "記録を保存しました。")
                 return redirect("pets:my_page")
     else:
         form = form_class()
