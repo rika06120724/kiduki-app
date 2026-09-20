@@ -102,21 +102,27 @@
         {% endif %}
 
         {% if step == 1 %}
+
+          <div class="form-group">
+            <p class="question-number">記録する日付</p>
+            {{ form.target_date }}
+          </div>
+
           <div class="form-group">
             <p class="question-number">① 徘徊</p>
-            <p class="question-text">今日、目的なく歩き回る・同じ場所をぐるぐる回る様子はありましたか？</p>
-            <div class="scale-container">
-              <div class="scale-left">まったくなかった</div>
-              <div class="radio-group">
-                {% for radio in form.pacing %}
-                  <label>
-                    {{ radio.tag }}
-                    <span>{{ radio.choice_label }}</span>
-                  </label>
-                {% endfor %}
-              </div>
-              <div class="scale-right">何度も見られた</div>
-            </div>
+              <p class="question-text">今日、目的なく歩き回る・同じ場所をぐるぐる回る様子はありましたか？</p>
+                <div class="scale-container">
+                  <div class="scale-left">まったくなかった</div>
+                  <div class="radio-group">
+                      {% for radio in form.pacing %}
+                        <label>
+                          {{ radio.tag }}
+                          <span>{{ radio.choice_label }}</span>
+                        </label>
+                      {% endfor %}
+                  </div>
+                  <div class="scale-right">何度も見られた</div>
+                </div>
           </div>
 
           <div class="form-group">

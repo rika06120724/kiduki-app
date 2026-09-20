@@ -37,6 +37,8 @@ def create_record(request, pet_id):
             # これまでのステップのデータとマージしてセッションに保存
             record_data = request.session.get("record_data", {})
             record_data.update(form.cleaned_data)
+            if step == 1:
+                record_data['target_date']= record_data['target_date'].isoformat()
             request.session["record_data"] = record_data
 
             if step < 3:
@@ -49,7 +51,7 @@ def create_record(request, pet_id):
                
                 Record.objects.update_or_create(
                     pet=pet,
-                    target_date=timezone.localdate(),
+                    target_date=record_data.pop('target_date'),
                     defaults=record_data,
                 )
 
