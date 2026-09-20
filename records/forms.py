@@ -1,5 +1,6 @@
 from django import forms
 from .models import Record
+from django.utils import timezone
 
 # 1-5スケールの選択肢
 SCALE_CHOICES = [(i, i) for i in range(1, 6)]
@@ -10,8 +11,9 @@ class RecordFormStep1(forms.ModelForm):
 
     class Meta:
         model = Record
-        fields = ['pacing', 'reaction_to_sight', 'reaction_to_call']
+        fields = ['target_date', 'pacing', 'reaction_to_sight', 'reaction_to_call']
         widgets = {
+            'target_date':forms.DateInput(attrs={'type':'date', 'max': timezone.localdate().isoformat()}),
             'pacing': forms.RadioSelect(choices=SCALE_CHOICES),
             'reaction_to_sight': forms.RadioSelect(choices=SCALE_CHOICES),
             'reaction_to_call': forms.RadioSelect(choices=SCALE_CHOICES),
