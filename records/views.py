@@ -45,12 +45,13 @@ def create_record(request, pet_id):
                 return redirect("records:create", pet_id=pet_id)
             else:
                 # 最終ステップ：全データをまとめて保存
-                record = Record(
+              
+               
+                Record.objects.update_or_create(
                     pet=pet,
                     target_date=timezone.localdate(),
-                    **record_data,
+                    defaults=record_data,
                 )
-                record.save()
 
                 # セッションをクリア
                 request.session.pop("record_step", None)
